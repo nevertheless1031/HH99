@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>숫자야구 프로그램</title>
+  <script>
+
+    let randomNumArr = []
+    for (i = 0; i < 3; i++) {
+      randomNum = Math.floor(Math.random() * 10)
+      if (randomNumArr.indexOf(randomNum) === -1) {
+        randomNumArr.push(randomNum)
+      } else {
+        --i
+      }
+    }
+    
+    let strike = 0;
+    let ball = 0;
+    let count = 0;
+
+    while (true) {
+      let input = prompt("컴퓨터가 숫자를 생성하였습니다. 답을 맞춰보세요!");
+      while (input.length != 3) {
+        alert("3자리 수를 입력해주세요");
+        input = prompt("컴퓨터가 숫자를 생성하였습니다. 답을 맞춰보세요!");
+      }
+      let inputArr = input.split("");
+
+      strike = 0;
+      ball = 0;
+      count++;
+
+      for (let a = 0; a < 3; a++) {
+        for (let b = 0; b < 3; b++) {
+          if (inputArr[a] == randomNumArr[b] && a == b) {
+            strike++;
+          } else if (a != b && inputArr[a] == randomNumArr[b]) {
+            ball++;
+          }
+        }
+      }
+      if (strike === 3){
+        alert
+        (`${strike}S 
+${count}번만에 맞히셨습니다. 
+게임을 종료합니다.`);
+      break;
+      }else if(ball === 3){
+        alert(
+          `${count}번째 시도 : ${inputArr.join("")}
+${ball}B`)
+      }else{
+        alert(
+          `${count}번째 시도 : ${inputArr.join("")}
+${ball}B${strike}S`
+        );
+      }
+    }
+</script>
+</head>
+<body>
+</body>
+</html>
+
